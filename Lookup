@@ -1,0 +1,23 @@
+%%[
+SET @fname = AttributeValue("firstname")
+SET @lname = AttributeValue("lastName")
+SET @birthday = AttributeValue("birthday")
+SET @mobile = AttributeValue("mobile")
+SET @subID = AttributeValue("subscriberKey")
+]%%
+<h1> AMPSCRIPT</h1>
+ %%[SET @Lookup = Lookup("AS_Practice1","firstname","subscriberKey", @subID) ]%%
+<p> <b><u>Lookup</u></b><br>
+  Dear <b>%%[IF NOT EMPTY(@fname) THEN ]%%%%=v(@fname)=%% %%=v(@lname)=%%%%[ELSE]%%%%=v(@Lookup)=%%%%[ENDIF]%%</b>,<br><br>
+    This is Ampscript 30days challenge group. Let us know if you need any help in understanding the concepts and training material.<br><br>
+    Here are your details:<br>
+   Name: %%[IF NOT EMPTY(@fname) THEN ]%%%%=v(@fname)=%% %%=v(@lname)=%%%%[ELSE]%%%%=v(@Lookup)=%%%%[ENDIF]%%<br>
+    %%[IF NOT EMPTY(@birthday) THEN ]%%
+   DOB: %%=v(@birthday)=%%<br>
+    %%[ENDIF]%%
+    %%[IF isPhoneNumber(@mobile) THEN ]%%
+   Phone: %%=v(@mobile)=%%<br>
+    %%[ENDIF]%%
+</p>
+<br> <b> Happy Learning!!</b>
+ 
