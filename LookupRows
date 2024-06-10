@@ -1,0 +1,45 @@
+%%[
+SET @fname = AttributeValue("firstname")
+SET @lname = AttributeValue("lastName")
+SET @birthday = AttributeValue("birthday")
+SET @mobile = AttributeValue("mobile")
+SET @subID = AttributeValue("subscriberKey")
+]%%
+
+<h1> AMPSCRIPT</h1>
+<p> <b><u>LookUpRows</u></b><br>
+ %%[
+   SET @SetupRows = LookupRows("AS_Practice1","lastName", @lname)  
+   SET @RowCount = rowcount(@SetupRows)
+   IF @RowCount > 0 THEN
+   FOR @i = 1 TO @RowCount DO
+    Var @setRow, @subscriberKey1
+    set @setRow = row(@SetupRows , @i)
+    SET @subscriberKey1 = Field(@setRow, "subscriberKey")
+    SET @birthday = Field(@setRow, "birthday")
+    SET @Name = Field(@setRow, "Name")
+    SET @emailAddress = Field(@setRow, "emailAddress")
+    
+    
+    SET @FinalOutput = CONCAT(@FinalOutput, @subscriberKey1,@birthday, @Name, @emailAddress, '<br><br><br>')
+
+   
+   NEXT @i
+   ENDIF
+   
+   
+   
+ 
+ ]%%
+
+</p>
+     <p style="color:red">%%=v(@SetupRows)=%%<br></p>
+  %%=v(@RowCount)=%%<br>
+   <p style="color:red">  %%=v(@setRow)=%%<br></p>
+  %%=v(@FinalOutput)=%%<br>
+
+  
+  
+  
+<br> <b> Happy Learning!!</b>
+ 
